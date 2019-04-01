@@ -1,0 +1,17 @@
+code repository:
+
+cvcs = centralized version control system:
+the entire code base lives in only one place
+prevelant when dealing with enterprise or anything that is risk averse. Supported by Murcurial, Perforce, TFS.
+One lane road
+
+dvcs = distributed ... :
+the code base is on any machine that is a part of that codebase network. 
+All of the machines have a good portion of the whole code but not everything. SVN, Git.
+Mulit-lane road
+Eventually bring all the branches together and we call that a merge
+
+primary reason to use version control is to see the history of the code
+
+
+
