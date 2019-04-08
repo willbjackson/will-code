@@ -13,5 +13,181 @@ Eventually bring all the branches together and we call that a merge
 
 primary reason to use version control is to see the history of the code
 
+Study the Request Response Life Cycle
+
+Status Codes
+
+HTTP: Verbs and Status's
+
+Verbs: The channel on which two nodes communicate
+
+More common: 
+Post- Create
+Get- Read 
+Put- Update 
+Delete- Delete
+"Crud"
+
+Less common: Patch Option Head
+
+Status's: 
+
+low level status
+100 series= network information
+
+high level status
+200 series= response
+300 series= redirection
+400 series= user error
+500 series= service error
+
+semantic web:
+
+header
+footer main 
+article
+nav
+figure
+figcaption
+section
+aside
+strong - bold
+em - italic
+small
+
+the goal of this is not for presentation but for the understanding
+
+HTML5:
+
+semantic web 
+
+API's:
+audio
+video
+media queries/responsive web design:
+native, adaptive and then responsive
+viewport - the amount of space you need on your screen to do something
+
+API's that need JS
+canvas
+storage - local and session - save info into the browser for future use - limited - enough info stored to know who the user is for the next use 
+geolocation - allows the website to know where you are 
+
+elements - means that we have a tag, attributes and content. It can be block (entire width of the viewport), inline(just the space that it needs) and inline block(behaves as an inline with the powers of the block. Adjust height and width).
+
+special characters- ><# etc. Anytime we need a special character, we use the... & characcter ;
+
+attributes- additional info we can give to an element. Key value pair. Global(id, class) and local(stylesheet and href only belong to link when used that way)
+
+form- allows us to take info from the user. Inside we'll have several input elements.
+
+lists- ordered and unordered lists
+
+charset= UTF-8 and ASC11
+
+CSS:
+
+selectors- a way for css to know which element we need to grab. 5 primitive selectors: omni *, tagname itself, class ., tag.classname, id #. Also ancestor descendant and the parent child. Also siblings using the +. 
+
+Look into Psudo class and elements as well as using the ~ slelectors.
+
+Box model- how everything is rendered on the screen. Content, padding, border, margin.
+
+stylesheets- precedence has to do with where in the sytle structure and specificity how close to the element are you that you want to style
+
+css grid system(not css grid)- 12 column design vs graph. css grid is still not up on many browsers
+
+JS general purpose language:
+
+dynamic language- we do not define the variable, it is defined by the value. Type inference, type is infered by the value given to the variable rather than the other way around. loosely typed.
+
+object oriented - everything is an object. an object contains properties and functions. each element contains data and behavior. data = properties, behavior = function. 
+
+prototype inheritance not classical inheritance. no parent child structure. more of a siblings structure. if I want properties of another object, we link them together. oloo - object linked to other objects.
+
+ES2015
+
+define variables:
+var: does not provide scope. var is bound by its parent scope.
+let: bound by its scope.
+const: bound by its scope and its value cannot change.
+
+data types:
+string
+number
+boolean: yes/no = true/false
+null: empty
+undefined: non-existent
+object: everything else = array, function, literal object
+
+booleans are really Truthy and Falsy- everything is true unless it is false. so lets define what is false so that we know what is true.
+false = 0, NaN, " " or empty string of length = 0, null, undefined
+
+conditionals:
+
+2 ways to make decisions:
+
+if (boolean), else, else if
+operators behind the scenes => |(or) and &(and)
+|| and && are short-circuit operators
+
+switch (value)
+
+case condition
+case condition
+case condition
+
+switch takes a value and in each case takes the condition
+
+loops:
+
+forEach- requires an array
+for- needs and index, a condition, an incrementor or decrementor. (doesnt necessarily need all three at the same time)
+we have the ability to do break and continue with for loops 
+while- starts with a condition. somewhere in there you will have a counter and a break 
+do...while- we want the loop to happen at least once
+for...in- allows us to loop through properties in an object
+
+scopes:
+
+global and local 
+global => document or window
+local => function or let and const
+
+document- any js file
+function- methods or IIFE
+
+why do we need scope? we don't want our code to be accessable anywhere and everywhere
+
+DOM- allows our js to connect to HTML - essentially a tree structure
+querying on css selectors 
+
+objects:
+
+a representation of data and behavior. the data is the properties, the behavior is the function.
+
+literal object- 
+let a = {
+    name: will,
+}
+shallow copy
+
+constructor function that will also create objects-
+function a2 () {
+    this.name = will
+}
+instance copy
+
+object clone- 
+let a3 = object.create(object clone)
+deep copy
 
 
+client server:
+
+request response life cycle
+server contains all the code and logic and the client contains the code. The client requests info from the server and the server sends it back.
+
+Read about:
+request response life cycle
+event capturing and event bubbling

@@ -1,0 +1,56 @@
+app => client => software
+
+    => server => software
+
+    => hardware => harware
+
+software speaks to hardware via commands
+
+commands have simulators which are fake and emulators which are real
+
+powershell - windows
+bash - linux
+
+interface is text. there is inline commands and scripts
+
+windows => windows
+
+linux => ubuntu or mac.os
+
+create a folder:
+inside you create html, css and js
+
+3 ways to do it:
+-gui
+-cli 
+-scripts (function or formula )
+
+a script allows us to repeat
+more importantly it allows us to evolve and version
+it can also audit
+
+git bash is basically bash but in windows
+
+learn poweshell scripts
+foss cheat sheet 
+
+ubuntu instructions
+
+
+sudo -s
+
+apt update
+
+apt upgrade -y
+
+sudo apt-get install build-essential curl file git
+
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
+
+
+
+
+
+
+
+

@@ -1,7 +1,7 @@
-function Size () {
+function Size (n, p) {
     this.id = null;
-    this.name = null;
-    this.price = null;
-}
-
-export { Size };
+    this.name = n;
+    this.price = p;
+  }
+  
+  module.exports = Size;

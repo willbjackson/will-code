@@ -6,4 +6,4 @@ function Address () {
     this.zipcode = null;
 }
 
-export { Address };
+module.exports = Address;

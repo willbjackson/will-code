@@ -1,0 +1,23 @@
+<% include partials/header %>
+
+<h1>Crust Selected</h1>
+
+<% crusts.forEach(function(crust){ %>
+<li>
+    <%= crust.text %>
+</li>
+<% }) %>
+
+<form action="/addCrust" method="POST">
+    <label for="crust">Choose a crust:</label>
+    <select name="newCrust" id="crust">
+        <option value="pan">Chicago</option>
+        <option value="thin">New York</option>
+        <option value="thin">Neoplitan</option>
+        <option value="thin">Sicilian</option>
+        <option value="thin">Standard</option>
+    </select>
+    <button>Select</button>
+</form>
+
+<% include partials/footer %>
