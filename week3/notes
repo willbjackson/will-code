@@ -23,7 +23,7 @@ inside you create html, css and js
 3 ways to do it:
 -gui
 -cli 
--scripts (function or formula )
+-scripts (function or formula)
 
 a script allows us to repeat
 more importantly it allows us to evolve and version
@@ -47,10 +47,219 @@ sudo apt-get install build-essential curl file git
 
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
 
+Cliet and Server
+
+URL - uniform resource locator - a subset of the URI with the path of where to find the resource
+URI - uniform resource identifier - more specific - the name of the resource we need
 
 
+Client:
 
+HTTP calls make a request from the server
 
+Bing.com is the URI
+http://... is the URL
 
+on the server we're gonna have a thing called the path
+the browser has a listener called an http handler listening for requests
+assuming we have a handler for the request, we need to give it a response
 
+Request, you get URL, response, you get IP
 
+on the server side, you can have any language you want 
+in terms of JS, on the Client side, we're using ES2015, on the Server side, we're using node.js e.g Jekyll/Hyde
+ES2015 says we can use import/export(module) while using document
+node.js also has module but you need to use require() and then express.js 
+are we writing server side js or client side js. it depends on what we're doing to determine how we write it
+the only way for the client and server to talk to each other is Request and Respnonse via http
+
+bubbling...
+AJAX
+
+QC
+client server
+request lifecycle
+http respones and request
+AJAX
+
+Linux families
+not an operating system, it is a...
+the combination of software colonel and device is an operating system
+
+app: deals with the GUI
+os
+kernel: deals <= with the CLI => Prompt => Emulator => Shell (bash and powershell)
+drivers
+BIOS and how
+
+emulators have additional features that we need. they support various commands, scripts and output formats
+
+commands classified into 3 main groups:
+
+navigation- allows us to interact with the file system
+manipulation- interact with outputs (deleting, inserting, modifying and creating)
+permission- interact with rules of read, write and execute
+
+file system- overall structure of the directories on your machine. linux one starts at the root. from the root, we have access to things like bin, user, media, var, etc, sbin
+
+commands:
+
+root-
+bin- binary code for all apps. packages of our apps need to work
+user- user directories(every user that creates an account on your machine will have a directory)
+media- drives for windows. linux media- any external devices(usb or anything that can be interacted with the machine)
+var- directory where you put information. think of them as any system resources that are not permanent
+etc- literally etcetera. everything else. an extention of bin. that has packages for the bin packages
+sbin- system binary code
+
+navigation:
+
+ext1 - 4/ extfs4(most will be on this) - works for both ssd and disk drives
+bbrfs- ssd- there are no moving parts, we can save battery, they technically where out faster than disc drives. transisters fry faster somehow
+fat32- old and not used much 32 bit registers and 4GB hard drives
+
+cd ./ ../ ~/ path
+cd is nothing more than instructions that we are giving the computer to do something
+starts with an action which can contain one or more arguments as well as one or more flags
+action- cd, flag- x, argument- ~
+2 types of flags,
+short which is represented with a - followed by a single character
+long is represented by -- followed by a single word
+
+we are always going to be doing action, flag then agrument
+
+any . resource name is hidden by default in linux. the reason we use them is we may not want users to mess with them. as admins we need to know about thos things
+
+pwd 
+whoami 
+which - binary 
+ls 
+
+permission:
+root(not the directory root meaning /) always has all the permissions. it is a sudoer and has all the access'. default owner of everything except your user directory
+
+d = directory- rwx(root user) rwx(current user) rwx(group that the current user belongs to)
+- ...
+l = link- ...
+
+when you have all 3 (rwx) r = read permission. w = write. x = execute
+
+read- lightest - 2^0 => 4
+write- modest - 2^2 => 2
+execute- heaviest - 2^2 => 1
+
+examples:
+--x = 1
+-w- = 2
+-wx = 3
+r-- = 4
+r-x = 5
+rw- = 6
+rwx = 7
+
+chmod 777 = rwx rwx rwx
+chmod 755 = rwx r-x r-x
+
+creating a script
+
+#!/bin/bash
+
+cd ~
+mkdir scripts
+touch scripts/first
+
+chmod = change mod- change the permission of the user/group/other(resource name or secondary group). aka directory/file/link
+chmod you need who, permission then path
+u = user
+g = group
+o = other
+a = all
+ls -l = long listening
+
+chown = change ownership 
+for example, as an owner of the script.sh, i can modify the name the name of the owner
+chown will: user /bin
+you have to be a super-user to use chown and chmod
+
+cat- allows us to read the content of a file in line 
+shows you the contents of the file/files - also can redirect the output of that/those files
+
+echo- repeat once
+echo "hello file" > file1 ... save "hello file" into file1
+> = replace all content with input
+>> = append to file content 
+
+rm- removes directories and files
+rm path (single resource)
+rm -r path (recursively or anything in that path) needs a flag to delete anything after that path
+
+mv- move (renaming)
+file1 => file2 - mv file1 file2 - rename
+or
+mv file1   /skin/file1 - change directories
+copy- i want a copy of that
+copy file1 file2 - you end up with 2 identical files
+ 
+
+#! = sha-bang
+
+#!/bin/bash = means eerything we write afterwards is in the context of the shell (in this case, bash)
+in the context of bash, do...whatever follows e.g mkdir, touch, cd...etc
+if it has an extention like script.sh, you must execute like sh script.sh
+if you don't give it an extention then all you need to execute is script
+
+manipulation:
+
+Reguar Expression: small language/tool that allows you to parse text efficiently 
+RegEx
+
+. any character
+^ start of
+$ end of
+\s space
+\w any alpha characters
+\d any numeric characters
++ one or more
+* 0 or more
+[] any within the range
+() any within the group
+[^ ] not within the range 
+? optional
+
+grep- cat allows you to get the whole file whereas grep allows you to get only part of the file using regex
+
+regex => content
+globbing => resource
+
+* any file
+** any directory
+
+find lib*
+find *lib
+
+words to study:
+
+cd, pwd, whoami, whereis, which, mkdir, touch, rm, cat, chmod, chown, cp, mv, grep, ls, nano, more, less, vi, echo, sh
+
+new things: 
+
+find, sed, ps, kill
+
+scripts require:
+
+#!/bin/bash...
+
+...any and all commands
+
+-p will create a path where there is none
+mkdir -p will/week3
+
+directoryName=$1
+
+mkdir ~/$directoryName
+cd ~/$directoryName
+
+whenever you get $, it means its a variable
+variables in scrits are just name=
+
+challenge: should be able to move the "trythis" into our script using the pipe
