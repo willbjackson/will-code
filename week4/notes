@@ -1,0 +1,294 @@
+linux => os built on a kernal that allows us to talk to hardware
+in reality when we say linux we really mean the kernal as it is the core
+
+Kernal:
+
+applications
+package managers
+cli(potentially)
+gui(potentially)
+network
+administration
+file system
+tools
+
+all of the above is in reality the OS. The kernal is just at the center
+
+when dealing with linux we dont really care about: gui and applications
+
+
+package managers: aka APT
+cli(bash in our case so far)
+
+Linux is made up of distribution
+
+distribution means:
+
+1. family
+2. kernel
+3. specialized tools
+4. desktop environment
+5. shell
+6. Its own windowing system
+
+there are a few primary families:
+
+Debian(we will focus on this one)
+RedHat
+SUSE
+Ark
+
+all of them have one thing in common and thats the kernal
+
+Debian: ubuntu, kubuntu, linux mint
+
+Linux is free:
+
+not free of cost
+
+free to modify, share, distribute and contribute
+
+The Linux kernal is used:
+
+50% internet
+most Enterprise
+StockExchange
+SuperComputers
+
+GNOME(what we will be using)
+KDE
+Xfce
+Lxde
+
+Versions:
+
+ubuntu 18.04.2
+linux kernel 4.15/4.18
+
+Shell:
+bash
+
+Emulator: gives us access to the shell
+terminal
+iterm
+powershellise
+
+we're gonna work with:
+
+node.js
+kubernotes
+docker
+
+Shell:
+
+commands:
+
+navigation
+permission
+manipulation
+
+navigation:
+
+cd . .., path, mkdir, touch, rm, rmdir, whoami, pwd, whereis, ps, aux, which
+
+permission:
+
+chmod, chown
+
+manipulation:
+
+echo, cat, pipe |, copy, mv, insert >, sed, cp, append >>, grep, kill, xargs, read 
+
+scripts:
+
+#! directive
+variables
+arguments
+considtionals w/ if
+loops w/ while
+
+flags:
+
+- short Version
+-- long Version
+-abc is = -a -b -c 
+case sensitive
+
+
+Cloud:
+
+approach 1- lift and shift 
+
+approach 2- cloud first
+
+cloud is nothing more than a rental service for servers
+
+server: a computer with network and services
+
+we use it for:
+
+compute- every process in a computer 
+storage- unstructured(everything i've saved personally. I can save it wherever I want) and structured(databases)
+networking- lan(local area network) or wan(wide area network) or VPN's or proxy etc.
+applications- email, games, chat etc.
+monitoring/analysis- app insights, fiddler, web crawlers, bots
+
+why use the cloud?
+
+cheaper/low-barrier of entry
+convenient/accessable
+efficient(only using as much as you need)
+
+cloud fundamentals:
+
+Compute:
+
+virtual machines/ real machines with both hardware and software. they are accessable over a network. these days they are replaced by an emulator(an abstraction for the real thing). a real machine partitioned into multiple virtual environment = VM...
+
+virtualization- simultaneous images/environments of software running on 1 or more physical hardware. anatomy of a vm is os-kernal-storage. problem is we end up wasting potential. limited. not efficient...
+
+we're moving away from virtualization and into containerization
+
+container/ completely virtual. no hardware.
+
+containerization is simultaneous processes of software running on one or more environment. don't know about physical harware. they only care if the services are running.  as long as there is room, we will pack it in. we can have double or triple the amount of the vm's on the same physical hardware
+
+serverless/
+
+simultaneous functions of software running on 1 or more processes. dealing with functionality instead of process. use only what you need
+
+Storage:
+
+file- resource with an extention (blob with an extention)
+
+blob- binary date 
+
+table- spreadsheets
+
+queue- only available in order. an ordered stream of binary data
+
+databases- 
+SQL: relational database managment system aka relational.
+NoSQL: document, key:value pair, column store
+
+define cloud: 
+
+cost effective(you pay for what you use)
+
+scalability(2 types of scale. scale up(same machine suped up. better preformance and resources in the same enclosure) and scale out(distributing. distibute processing accross a farm of similarly spec'ed enclosures))
+
+elastiity(process where your resources can expand to match increasing traffic or contract to match decreasing traffic)
+
+reliability(always on and available under any load. 99.9% or 99.999%)
+
+security(physical and digital. we have to know what rules to follow. thats why we have compliance, sla(service level agreements) and certifications)
+
+globalization(available anywhere and everywhere)
+
+
+Cloud Models
+
+IaaS(VM), PaaS(storage), SaaS(email, social networking), CaaS, FaaS
+
+Iaas: you are in charge of everything. control of hardware, os, software, and applications
+
+Paas: you are infastructure independent. you only care about having the ability to push your code as long as there is infastructure is there in some form, you're good. control of software and applications
+
+Saas: you just care about using something. you don't want to build it. you don't care about platform, os etc. available on any device. control of applications.
+
+These are all resource intensive. virtual systems. its efficient, but not efficient enough. all of the above deal with virtualization.
+
+containerization: the process of removing the need to have an entire virtualization in order to run your entire application. your containers will take less resources to run. containers you can think of as applications on your maching. we just need one additional thing in our stack called the engine. the engine is a service that is spawning processes(its giving resources to those containers in order for the applications to run. aka task manager on a windows machine). it doesn't have a virtual machine.
+
+CaaS: for the same stack you can have a ot more applications running. on top of the engine you have control over multiple applications
+
+Faas: an application is nothing more than a couple of functions. example is notifications. a notification is not an application but a function. there are many functions within the application. so your not building an application but you are building functions that all together create an application.
+
+overall we are moving toward containerization as an industry so we will be focusing on Caas and Faas. our industry is very action/reaction. its back and forth. 
+
+Edge Computing: instead of having massive server farms, we are gonna distribute all of those resources to all the devices. you will be the cloud. you will use the unused power of your personl computer to harness the cloud
+
+engine we use will be docker
+
+software we use will be kubernotes
+
+functions that we use will be JS and node.js
+
+
+Cloud Types:
+
+Public: accessable to the public but you still need to be a member. must be a tenant. anyone 'can' be a member. open network.
+
+Private: on-premises. only the company and its employees have access to it. (UTA WiFi network). usually a closed network. cannot be accessed over the internet by anyone.
+
+Hybrid: internal and external facing networks. you can have a microsoft account(azure), doesn't mean you are a microsoft employee.
+
+Multi: more than 1 provider. cost/experience is different in different situations. think about regions and users. not all cloud providers do the same level of service. one cannot keep the capacity for all. if it doesn't work for one, you switch to the other. allows for backup, continuity, reliability etc. one provider alone cannot give us all of what we need
+
+Gov: specialized cloud for any sovereign country. will never have access unless you have clearance. they have their own entire network.
+
+Regions: areas where a cloud provider establishes services available for develepment and operations.
+
+Azure has over 40 regions
+
+South Central region => availability zones => resource groups => resource groups are managed by subscriptions => account
+
+each building will have its own power and network but together they become a region.
+
+Linux will be our virtual machine
+
+Compute we will use virtual machines
+
+az --help
+
+az login
+
+az account --help(if you need it)
+
+az account set
+
+az account st -s subscription name in quotes
+
+az ad --help
+
+az ad user --help
+
+az ad user create
+
+az ad user list -o table (or JSON)
+
+az ad user list --query [].givenName
+
+when doing a challenge, solve the scaffolding first. Make sure all of the file talk to each other first before you start writing the actual code that you need. eg. txt, script and node challenge. 
+
+cat something.txt | ./something.sh
+cat something.txt | xargs ./something.sh
+
+Projects 0
+
+tooling:
+
+bash
+node.js
+azure cli
+
+requirements:
+
+1. automate the process of setting up a new virtual machine thats already created (linux, brew, az, node, git, fully updated) its not our job to know where to run it, its our job to set it up
+executable script.sh 
+create a virtual maching that is linux based, and then create a script that will make it ready for develepment(being able to use all of the above tools)
+
+2. automate the process of setting up a new git project file structure(git init)
+verify dev environment(requirement 1). create project.
+create a script that first needs to verify that the environment is fully provisioned(it needs to pass requirement 1) and only if it is, then we will create a project structure In order for a node project to work, what does it need? There is a specific configuration. how do we know that a project is a git project? .git folder. What is the similar folder for node? index.js?
+
+3. automate the process of creating, assigning role, deleting a directory user(azure, must be admin, assign reader, contributor to subscription, remove role, delete only non-admin)(creating, assigning and deleting are all seperate scripts that feed to one script. 1 script with 3 functions. assign takes 2 meaning add or remove, take or give, its up to us to figure that out.)
+az account. az = script. account = function(we will need 3 of these)
+how to find the admin has to do with, az ad and az role 
+
+4. automate the process of starting and stopping a node.js web application(what we did for the challenge)
+1 script w/ 2 functions
+starting and stopping are key
+any node-based web project
+
+focus on solving the scaffolding first. get to the basic solution faster

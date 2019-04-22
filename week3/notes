@@ -32,7 +32,7 @@ it can also audit
 git bash is basically bash but in windows
 
 learn poweshell scripts
-foss cheat sheet 
+foss cheat sheet
 
 ubuntu instructions
 
@@ -132,7 +132,7 @@ any . resource name is hidden by default in linux. the reason we use them is we 
 
 pwd 
 whoami 
-which - binary 
+which - binary
 ls 
 
 permission:
@@ -263,3 +263,21 @@ whenever you get $, it means its a variable
 variables in scrits are just name=
 
 challenge: should be able to move the "trythis" into our script using the pipe
+
+cat 'file.txt' | xargs script.sh
+
+lines=$1
+
+while $line in $text
+do  
+    node index.js $line
+done
+
+or
+
+cat file.txt | script
+
+while read $line
+do
+    node index.js $line
+done

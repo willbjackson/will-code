@@ -101,7 +101,7 @@ JS general purpose language:
 
 dynamic language- we do not define the variable, it is defined by the value. Type inference, type is infered by the value given to the variable rather than the other way around. loosely typed.
 
-object oriented - everything is an object. an object contains properties and functions. each element contains data and behavior. data = properties, behavior = function. 
+object oriented - everything is an object. an object contains properties and functions. each element contains data and behavior. data = properties, behavior = function.
 
 prototype inheritance not classical inheritance. no parent child structure. more of a siblings structure. if I want properties of another object, we link them together. oloo - object linked to other objects.
 
@@ -160,7 +160,7 @@ function- methods or IIFE
 why do we need scope? we don't want our code to be accessable anywhere and everywhere
 
 DOM- allows our js to connect to HTML - essentially a tree structure
-querying on css selectors 
+querying on css selectors
 
 objects:
 
