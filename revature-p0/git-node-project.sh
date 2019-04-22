@@ -40,7 +40,7 @@ touch \
   .github/CONTRIBUTING.md
 
 ## root
-mkdir \
+mkdir -p \
   client \
   src \
 

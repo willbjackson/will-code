@@ -15,13 +15,16 @@ start_node()
     fi
 }
 
+#kill node
 stop-node()
 {
     filename=$1
-    result=$(ps | grep -E '\snode\s' | grep -E $filename)
+    result=$(kill -INT $$)
     echo $result
 }
 
 command=$1
 $command $2
+
+exit 0
 
