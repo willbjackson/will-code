@@ -1,3 +1,5 @@
+
+
 function charCount(data) {
     if (data) {
       return data.split('').length;
