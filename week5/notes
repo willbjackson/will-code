@@ -1,0 +1,273 @@
+Azure
+
+1. account- include a role and tied to a subscription- tells me about user
+2. subscription - tells me about cost
+3. 
+
+virtual machine- physical machine that you access through the network
+hardware
+OS/storage
+maintenance
+update/upgrade
+security
+backup/network
+
+add 
+compute
+ubuntu 18.04
+give it a vm name
+south central region
+pick 18.04 ubuntu OS
+change size 
+
+ssh is a network protocol that allows us to connect to a vm over the network.
+jazz is the username
+@domain
+
+ssh jazz@52.171.208.162
+
+scp allows us to transfer from one machine to the other machine
+
+scp ./linux-setup.sh jazz@52.171.208.162:~/linux-setup.sh
+
+ssh-keygen allows us to generate an authentification certificate that will replace us having to type in our password over and over
+
+scp --help
+use rsa or ecdsa
+
+ssh-keygen -b 4096 -t rsa -N (passphrase for the day e.g jazzwonlastnight) -C temporarykey
+
+cd .ssh/
+ls 0 shows the private and public keys
+cat id_rsa.pub shows the entire public key
+
+once you have the public key you can use it going forward so that you don't have to use the password every time
+
+ssh jazz@52.171.208.162 -i .ssh/id_rsa.pub
+then change permissions
+sudo chmod 600 .ssh/id_rsa.pub
+
+key is still invalid because it needs a different format
+
+openssl rsa -out linux2.pem -in .ssh/id_rsa
+ourhttps://docs.microsoft.com/en-us/azure/virtual-machines/linux/create-ssh-keys-detailed
+
+once the pem file created:
+
+ssh jazz@52.171.208.162 -i (whatever the pem file is)
+chmod 600 if you still need to
+
+
+security: either password or keypair
+from here on out, we will almost never use password unless that vm is going to be the entry point for other vm's or if its going to be a long lived vm
+
+keypair | we use rsa(algorithm) | sha 256 or sha 512(the scheme behind rsa) 2^n e.g 2 4 8 16 32 54 128 512
+
+ssh-keygen- a key generator using any of the above schemes
+ssh- allows us to connect to another networked machine
+openssl- also a key generator, primarily for .pem
+
+private key: used to make the public key. used to be a part of the initial connection to the network machine.
+
+public key: .pub or .pem 
+
+RAM- more you have the faster it runs. servers don't need as much. it has to support everything that you are seeing(gui). since we are not dealing with the gui, we will only need 1 or 2 GB's.
+OS- need to know which one. in terms of cloud its pretty much just windows or linux
+CPU- needs to be up to date. we will normally end up using 2-4 CPU's.
+PORT- ssh(no gui), xrdp for linux and rdp for windows(gui), http, sql
+HD- hard disk- ephemeral or temporary (it needs very little to operate) attached(its not part of the vm. when we delete the vm, the ephemeral will be deleted and the attached will not. think of it as partition. one will be system. one will be data)
+
+Network:
+
+#public network(https)
+IP | v4 and v6
+range of IP => how big the range is. 
+10.0.0.0/32
+10.0.0.0 is the IP
+/32 is the mask
+
+10.0.0.0/32 = 1
+8 8 8 8 
+
+10.0.0.0/24 = 2^8
+8 8 8 256
+
+#private network(subnets and proxy)
+
+subnet is a portion of the network. we use them to manage our overall network.
+you can create multiple subnets with their own masking
+the real reason we do this is for recovery, fault tolerance and backups. don't have all your vm's in one subnet. spread them out into subnets in case one goes down.
+
+in front of all of the above we will have a proxy
+proxy is one vm that has access to all the other subnets and vm's. private network. the only way to talk to them is through ssh
+its called a proxy because your desktop has access to one vm and that one has access to all the other vm's 
+you register the proxy as the authenticator so that it can talk to all the other vm'scheme
+multiple lines of security
+
+Load balancer is public and the enitire network it is connecting to is private. it is the gate keeper that allows the private network to access the http's(public). the load balancer is public. we have to make sure that everything is allocated to the servers at the same level/intensity so that we dont over and underuse them. the load balancer helps us do this. its technically a script. the script does a PING to each server and determines how many reuests each server is making and then averages all of those PING's to make sure that all of those get the same. you also are able to only give one IP this way instead of one for each one. the load balancer itself is a script
+
+
+NSG: inbound | outbound
+
+ACL: access control list
+
+IPTable: routing 
+
+difference between cpu and gpu
+
+create VM 
+
+-OS
+-network
+-storage
+-specs- cpu, ram... size: A,B,D,F,H,M,P
+
+A,B,D- general purpose
+F- funcstions. greate capability
+H- high IOP's
+M- high memory, storage(queues, notifications, messaging)
+N- gaming, high graphics processing
+
+within all of the above:
+
+version- generation and version, B1v2 and D2v3
+location- not all location will have all the services. they have to decide which combination of sizes wiil make the company the most efficient and profitable.
+range- its not that we can't utilize what we have. we are reserving space for another task. each server is dedicated to something. there may be space in the data center but it is being reserved for something else. it's dynamic. things can be updated later to reallocate.
+
+
+network: 
+
+IP
+private
+public
+
+
+study in udemy creating vm's with disks
+read about update domain and fault domain
+
+4/25/19
+
+create vm:
+
+config vm
+deploy vm
+public network
+snapshot/image
+
+availability set
+
+scale set
+
+Configuration:
+
+manual process- create vm, start vm, run a script, stop vm
+first automation- create vm while attaching a script and extend the vm for provisionins, stop vm. (all done through extension)
+partial automation- create vm while creating a special script=cloud init. (cloud-init)
+full automation- create vm while creating a snapshot/image.
+
+Availability Set:
+
+vm is on Azure and that machine has a power connection. when you have many vm's, you'll spread them out over different azure servers's and different power sources in order to be efficient and cover yourself. you can also spread them out based on zones as well as servers. each zone has there own power. the whole point of all of this is to eliminate downtime. if one server or zone goes down, there's another one to pick it back up(migration). allows us to be fault-tolerant and have recovery.
+
+zones- data centers. a few per region.
+
+Scale Set: => redundancy and capacity
+
+add a level of abstraction accross all vm's so that it doesn't matter where it comes from i.e Load Balancer
+
+2 types of scaling: scale up and scale out
+
+scale up: more hardware. vertical adding to hardware (scale down- less hardware) i.e resize
+scale out: more machines. horizontal. (scale in- less machines) i.e scale set
+
+curl is the cat of reading https
+
+curl https://raw.githubusercontent.com/willbjackson/revature-p0/master/git-node-project.sh | xargs bash
+
+Configure the vm:
+
+create vm
+login
+run the 1st and second scripts
+
+az vm extention set:
+create the vm and execute the script without even going inside the vm.
+
+az vm extension set -g cardinals21 --vm-name cardinals --publisher Microsoft.Azure.Extensions --settings ‘{“fileUris”:[“https://raw.githubusercontent.com/willbjackson/revature-p0/master/linux-setup.sh”]}’ --protected-settings ‘{“commandToExecute”: “./linux-setup.sh”}’ -
+-name customScript
+
+https://docs.microsoft.com/en-us/azure/virtual-machines/extensions/features-linux
+
+i.e remote starting the car instead of getting in the car 
+
+http://www.yamllint.com/ (tells you whether it's valid code or not)
+
+az vm open-port -g cardinals21 -n endgame --port 8000
+
+
+az vm show -g cardinals21 -n endgame --show-details --output table
+
+Snapshot: (think discs)
+
+allows us to save a moment that can be replicated whenever we want as long as it applies to storage.
+a moment in time version of managed storage.
+applies only to disks
+-config
+-recovery
+-backup
+
+process: 
+
+-provisioned disk
+-create a snapshot
+-can then use on future disks
+
+Image: (think vm)
+
+moment in time version of managed compute
+applies only to virtual machines
+-config
+-redundancy
+
+process:
+
+-vm provisioned
+-vm stopped state
+-vm deallocated(removed from the actual physical machine)
+-vm deprovisioned(remove anything specific to that actual vm e.g disks, user)
+-create image
+-use on future vm's
+
+attach disks
+transfer the node server on the disk
+shut it down
+recreate using the image and the snapshot
+
+mount
+ sudo mkfs -t ext4 /dev/sdc
+ sudo mkdir /media/first
+ sudo mount /dev/sdc /media/first
+ sudo chown -R will:will /media/cardsdisk (optional)
+ sudo chmod -R 766 /media/cardsdisk (optional)
+
+First time snapshot:
+when creating the vm, add --attach-data-disks. If working with an existing vm just follow the following commands
+snapshot => disk that contains our server.js
+create the disk
+attach the disk
+go into the vm
+az vm open-port -g cardinals21 -n will2 --port 8000 --priority 800 (make sure it's working)
+provision the disk (make sure its in a state that you want when you take a snapshot or image)
+detatch the disk (az vm disk detach -n cardsdisk -g cardinals21 --vm-name will2)
+snapshot it
+az snapshot create -n cardssnapshot -g cardinals21 --size-gb 30 --source cardsdisk
+use it:
+az snapshot show -g cardinals21 --name cardssnapshot
+grab id: /subscriptions/3ee05f6f-9c22-48e9-9009-97be1501b7c8/resourceGroups/cardinals21/providers/Microsoft.Compute/disks/cardsdisk
+recreate the disk using snapshot
+az disk create -n cardsdisk -g cardinals21 --source /subscriptions/3ee05f6f-9c22-48e9-9009-97be1501b7c8/resourceGroups/CARDINALS21/providers/Microsoft.Compute/snapshots/cardssnapshot
+
+Image: 
+
+do all of the above until snapshot
+az image create -n cardsimage -g cardinals21 --source cardsdisk --os-type Linux
