@@ -64,6 +64,6 @@ createDisk()
 
 while read text
 do
-  node index.js "$text"
+  node index.js $text
 done
 
