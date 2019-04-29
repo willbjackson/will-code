@@ -16,7 +16,12 @@ function charCount(data) {
     return 0;
   }
   
-  let text = process.argv[2];
+  app.post('/index', (req, res) => {
+    const { text } = req.body
+    console.log(text)
   
-  console.log(charCount(text));
-  console.log(wordCount(text));
+    const wordCount = countWords(text);
+    const charCount = countAlphaNumeric(text);
+  
+    res.json({wordCount, charCount})
+  })

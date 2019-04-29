@@ -40,7 +40,7 @@ createVM()
 }
 
 #figure out the publicIp
-public_ip=$(az vm show -g $groupName -n $VMname )
+public_ip=$(az vm show -g $groupName -n $VMname... )
 #ssh into new vm
 
 # create disk
